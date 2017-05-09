@@ -17,7 +17,9 @@ import Control.Monad ((>=>))
 import Control.Category (Category(..))
 
 
--- | Bidirectional isomorphism that is partial in the backward direction.
+-- | Bidirectional isomorphism that is total when applied in the forward
+-- direction (@a -> b@), but partial when applied in the backward direction
+-- (@b -> Maybe a@).
 --
 -- This can be used to express constructor-deconstructor pairs. For example:
 --
@@ -42,7 +44,8 @@ import Control.Category (Category(..))
 --
 -- Module @Data.Piso.Common@ contains @Piso@s for some common datatypes.
 --
--- Modules @Data.Piso.Generic@ and @Data.Piso.TH@ offer generic ways of deriving @Piso@s for custom datatypes.
+-- Modules @Data.Piso.Generic@ and @Data.Piso.TH@ offer generic ways of
+-- deriving @Piso@s for custom datatypes.
 
 data Piso a b = Piso (a -> b) (b -> Maybe a)
 
