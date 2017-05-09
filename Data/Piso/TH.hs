@@ -25,9 +25,9 @@ derivePisos name = do
   info <- reify name
   routers <-
     case info of
-      TyConI (DataD _ _ _ cons _)   ->
+      TyConI (DataD _ _ _ _ cons _)   ->
         mapM (derivePiso (length cons /= 1)) cons
-      TyConI (NewtypeD _ _ _ con _) ->
+      TyConI (NewtypeD _ _ _ _ con _) ->
         (:[]) <$> derivePiso False con
       _ ->
         fail $ show name ++ " is not a datatype."
